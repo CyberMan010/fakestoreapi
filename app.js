@@ -10,11 +10,31 @@ let display = document.querySelector("main");
 let obj;
 
     let arr = [];
-    
+    let cards = document.querySelector(".cards")
+    const html = (title, img,price,description) =>{
+       return  `
+       <div class="card">
+  <p class="heading">
+    ${title}
+  </p>
+  <p>
+    ${price}
+  </p>
+  <p>${description}
+</p>
+<img src="${img}"/>
+</div>`
+    }
     fetch('https://fakestoreapi.com/products')
                 .then(res=>res.json())
                 .then(json=>{console.log(json); for(let i = 0; i < 20; i++) {obj= new Cake(json[i].title,json[i].price ,json[i].description, json[i].image);
                      arr.push(obj); }
+                     console.log(arr)
+                     arr.map(element => {
+                        console.log(element)
+                        cards.innerHTML += html(element.title, element.image,element.Price,element.Description);
+                     })
+                     
                     })
 
 
@@ -25,3 +45,4 @@ let obj;
 // });
 
 
+// ---------Task2----htmlsct-------
